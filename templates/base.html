@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'Desagrupar.png')}}">
+    <title>{% block title %}{% endblock %} - AbcBolinhas</title>
+    {% block style %}
+    <style type="text/css">
+        .important {
+            color: #6495ED;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
+    
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block menu %}
+        <ul>
+            <li> <a href="{{ url_for('home.rotaHome') }}">Home</a> </li>
+            <li> <a href="{{ url_for('doenca.rotaMenuDoencas') }}">Menu Doenças</a> </li>
+            <li> <a href="{{ url_for('doenca.rotaDoencaDengue') }}">Dengue </a> </li>
+
+        </ul>
+    {% endblock %}
+
+    <div class="container">
+
+        {% block content %}
+        
+        {% endblock %} 
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+        {% block footer %}
+        &copy; Copyright 2021 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>.
+        {% endblock %}
+    </div>
+
+    {% block js %}
+    <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
+    {% endblock %}
+</body>
+
+</html>
