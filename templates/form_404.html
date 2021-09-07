@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Erro 404 {% endblock %}
+
+{% block content %}
+
+<div style="height: 10%; background-image: url('https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2019/02/274034-erro-de-http-wordpress-como-corrigir.jpg');" >
+
+    <ul>
+        <li><h1>Pagina não encontrada !!! - Leonardo meister</h1></li>
+        <li><h1>Favor verificar o endereco</h1></li>
+        <li><a href="{{ url_for('home.rotaHome') }}">HOME</a></li>
+    </ul>
+
+    <p>{{ Error }}</p>
+    
+{% endblock %}
