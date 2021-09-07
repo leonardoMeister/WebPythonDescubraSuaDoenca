@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ url_for('static', filename = 'Desagrupar.png')}}">
+
     <title>{% block title %}{% endblock %} - AbcBolinhas</title>
     {% block style %}
     <style type="text/css">
@@ -14,37 +16,171 @@
     </style>
 
     <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
-    
+
     {% endblock %}
 </head>
 
 <body>
 
     {% block menu %}
-        <ul>
-            <li> <a href="{{ url_for('home.rotaHome') }}">Home</a> </li>
-            <li> <a href="{{ url_for('doenca.rotaMenuDoencas') }}">Menu Doenças</a> </li>
-            <li> <a href="{{ url_for('doenca.rotaDoencaDengue') }}">Dengue </a> </li>
-            <li> <a href="{{ url_for('OqueEuTenho.rotaOqueEuTenho') }}">O que eu tenho </a> </li>
-            <li> <a href="{{ url_for('Acompanhamento.rotaAcompanhamento') }}">Acompanhamento</a> </li>
-            <li> <a href="{{ url_for('Agendamento.rotaAgendamento') }}">Agendamento</a> </li>
-            <li> <a href="{{ url_for('MeusGraficos.rotaMeusGraficos') }}">Meus Graficos</a> </li>
-            <li> <a href="{{ url_for('Laudo.rotaLaudo') }}">Laudo</a> </li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid container">
 
-        </ul>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('home.rotaHome') }}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                            href="{{ url_for('doenca.rotaMenuDoencas') }}">Doenças</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('Acompanhamento.rotaAcompanhamento') }}">Acompanhamento</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url_for('Agendamento.rotaAgendamento') }}">Agendamento</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url_for('MeusGraficos.rotaMeusGraficos') }}">Meus Graficos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url_for('Laudo.rotaLaudo') }}">Laudos</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{ url_for('OqueEuTenho.rotaOqueEuTenho') }}"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            O que eu tenho
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <button class="btn btn-outline-success " href="#">Login</button>
+            </div>
+        </div>
+    </nav>
     {% endblock %}
 
     <div class="container">
 
         {% block content %}
-        
-        {% endblock %} 
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        
-        {% block footer %}
-        &copy; Copyright 2021 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>.
         {% endblock %}
+
+        {% block footer %}
+        <!--
+        &copy; Copyright 2021 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>
+        -->
+        <!-- Footer -->
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+        <!-- Footer -->
+        <footer class="text-center text-lg-start bg-light text-muted">
+
+            <!-- Section: Links  -->
+            <section class="d-flex justify-content-center justify-content-lg-between border-bottom">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3"></i>Descubra sua Doença
+                            </h6>
+                            <p>
+                                Uma parceria entre as maiores mentes, para lhe poporcionar essa esperiencia em 
+                                em mais de uma plataforma.
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Products
+                            </h6>
+                            <p>
+                                <a href="#" class="text-reset">App Mobile</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Web App</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Git Hub</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Useful links
+                            </h6>
+                            <p>
+                                <a href="#" class="text-reset">Pricing</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Settings</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Orders</a>
+                            </p>
+                            <p>
+                                <a href="#" class="text-reset">Help</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                Contact
+                            </h6>
+                            <p><i class="fas fa-home me-3"></i> Monte Castelo, Brasil 2021, Sc</p>
+                            <p>
+                                <i class="fas fa-envelope me-3"></i>
+                                <a href="#" class="text-reset">leozinhomm1@gmail.com</a>
+                                
+                            </p>
+                            <p><i class="fas fa-phone me-3"></i><a href="#" class="text-reset">+55 47 9 9239-8644</a></p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+            </section>
+            <!-- Section: Links  -->
+
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                © 2021 Copyright:
+                <a class="text-reset fw-bold" href="#">Leonardo Meister</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <br>
+        <!-- Footer -->
+    </div>
+
+    {% endblock %}
     </div>
 
     {% block js %}
