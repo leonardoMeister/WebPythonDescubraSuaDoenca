@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id='jacare'>
+        leonardo
+    </h1>
+
+    <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
+    <script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
+
+    <script type="text/javascript">
+        var IDLE_TIMEOUT = 100; //seconds
+        document.onclick = function () {
+            IDLE_TIMEOUT = 100;
+        };
+
+        document.onkeypress = function () {
+            IDLE_TIMEOUT = 100;
+        };
+
+        window.setInterval(CheckIdleTime, 1000);
+
+        function CheckIdleTime() {
+            IDLE_TIMEOUT--;
+            var min = parseInt(IDLE_TIMEOUT / 60);
+            var seg = IDLE_TIMEOUT % 60;
+            var oPanel = document.getElementById("jacare");
+
+            if (oPanel)
+                oPanel.innerHTML = (min + ":" + seg) + "";
+
+            if (IDLE_TIMEOUT == 0) {
+                alert("Time expired!");
+                document.location.href = "logout.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
