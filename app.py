@@ -1,4 +1,5 @@
 from flask import Flask , render_template,  session
+from datetime import timedelta
 import os
 
 from dir_home.home import bp_home
@@ -28,6 +29,14 @@ app.register_blueprint(bp_acompanhamento)
 def rotaErro404(error):
     return render_template("form_404.html"), 404
 
+#FUNÇÃO PARA DEFINIR O TEMPO MAXIMO DA SESSAO, SE ESTA ATIVA OU NÃO PELO TEMPO
+@app.before_request
+def before_request():
+    session.permanent = True
+    tempo = 6
+    #SERVE PARA TER UMA FORMA DE ACESSAR O VALOR TEMPO EM OUTROS LUGARES DA SESSAO
+    session['tempo'] = tempo
+    app.permanent_session_lifetime = timedelta(minutes = tempo)
 
 if __name__ == "__main__":
     app.run(debug= True, port= 5000)
