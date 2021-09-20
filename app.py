@@ -1,4 +1,6 @@
-from flask import Flask , render_template, url_for , redirect, request
+from flask import Flask , render_template,  session
+import os
+
 from dir_home.home import bp_home
 from dir_doencas.doencas import bp_doenca
 from dir_OqueEuTenho.OqueEuTenho import bp_OqueEuTenho
@@ -8,7 +10,10 @@ from dir_meusGraficos.meusGraficos import bp_meusGraficos
 from dir_laudo.laudo import bp_laudo
 from dir_login.login import bp_login
 
+
 app = Flask(__name__) 
+
+app.secret_key = os.urandom(12).hex()
 
 app.register_blueprint(bp_login)
 app.register_blueprint(bp_laudo)
