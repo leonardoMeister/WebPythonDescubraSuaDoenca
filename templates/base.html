@@ -1,95 +1,101 @@
+{% block html %}
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename = 'Desagrupar.png')}}">
+    {% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ url_for('static', filename = 'Desagrupar.png')}}">
 
-    <title>{% block title %}{% endblock %} - AbcBolinhas</title>
-    {% block style %}
-    <style type="text/css">
-        .important {
-            color: #6495ED;
-        }
-    </style>
+        <title>
+            {% block title %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
+            {% endblock %}
+            - AbcBolinhas
+        </title>
 
-    {% endblock %}
-</head>
-
-<body>
-
-    {% block menu %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid container">
-
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-
-                <ul class="navbar-nav me-auto mb-2 mb-lg-2">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('home.rotaHome') }}">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="{{ url_for('doenca.rotaMenuDoencas') }}">Doenças</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('Acompanhamento.rotaAcompanhamento') }}">Acompanhamento</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ url_for('Agendamento.rotaAgendamento') }}">Agendamento</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ url_for('MeusGraficos.rotaMeusGraficos') }}">Meus Graficos</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ url_for('Laudo.rotaLaudo') }}">Laudos</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ url_for('OqueEuTenho.rotaOqueEuTenho') }}"
-                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            O que eu tenho
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <button class="btn btn-outline-success " href="#">Login</button>
-            </div>
-        </div>
-    </nav>
-    {% endblock %}
-
-    <div class="container">
-
-        {% block content %}
-
+        {% block style %}
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
         {% endblock %}
-    </div>
+    </head>
+    {% endblock %}
+
+    {% block body %}
+    <body>
+
+        {% block menu %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid container">
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('home.rotaHome') }}">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="{{ url_for('doenca.rotaMenuDoencas') }}">Doenças</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('Acompanhamento.rotaAcompanhamento') }}">Acompanhamento</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ url_for('Agendamento.rotaAgendamento') }}">Agendamento</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ url_for('MeusGraficos.rotaMeusGraficos') }}">Meus Graficos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ url_for('Laudo.rotaLaudo') }}">Laudos</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{ url_for('OqueEuTenho.rotaOqueEuTenho') }}"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                O que eu tenho
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% block login%}
+                    <a href="{{ url_for('login.login') }}">
+                        <button class="btn btn-outline-success ">Logoff</button>
+                    </a>
+                    {%endblock%}
+                </div>
+            </div>
+        </nav>
+        {% endblock %}
+
+        <div class="container">
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
 
         {% block footer %}
         <!--
-        &copy; Copyright 2021 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>
-        -->
+                    &copy; Copyright 2021 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>
+                    -->
         <!-- Footer -->
 
         <!-- Footer -->
-        <br><br><br><br><br><br><br><br><br><br><br>
         <footer class="text-center text-lg-start bg-light text-muted">
 
             <!-- Section: Links  -->
@@ -104,7 +110,8 @@
                                 <i class="fas fa-gem me-3"></i>Descubra sua Doença
                             </h6>
                             <p>
-                                Uma parceria entre as maiores mentes, para lhe proporcionar essa experiência em mais de uma plataforma.
+                                Uma parceria entre as maiores mentes, para lhe proporcionar essa experiência em mais de uma
+                                plataforma.
                             </p>
                         </div>
                         <!-- Grid column -->
@@ -158,7 +165,7 @@
                             <p>
                                 <i class="fas fa-envelope me-3"></i>
                                 <a href="#" class="text-reset">leozinhomm1@gmail.com</a>
-                                
+
                             </p>
                             <p><i class="fas fa-phone me-3"></i><a href="#" class="text-reset">+55 47 9 9239-8644</a></p>
                         </div>
@@ -177,12 +184,14 @@
         </footer>
         <!-- Footer -->
 
-    {% endblock %}
-    </div>
+        {% endblock %}
+        </div>
 
-    {% block js %}
-    <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
+        {% block js %}
+        <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
+        {% endblock %}
+    </body>
     {% endblock %}
-</body>
 
 </html>
+{%endblock%}
