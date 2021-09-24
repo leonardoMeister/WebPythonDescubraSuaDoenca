@@ -18,7 +18,7 @@ Projeto Web desenvolvido usando python, para auxiliar a descobrir a sua doença.
 - Modelagem de Banco de Dados:
   - <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Conceitual</a>  
   - <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Lógica</a> 
-  - <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoencal">Física</a> 
+  - <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Física</a> 
 
 ## User Experience
 
