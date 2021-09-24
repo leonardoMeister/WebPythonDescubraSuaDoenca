@@ -7,9 +7,9 @@ Projeto Web desenvolvido usando python, para auxiliar a descobrir a sua doença.
 
 
 ## Engenharia de Software
-- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Levantamento de requisitos: Usuário (Funcionais e não funcionais)</a> 
-- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Levantamento de requisitos: Sistema (Funcionais e não funcionais)</a> 
-- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Histórias de Usuário e critérios de aceitação</a> 
+- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca/blob/main/Engenharia%20de%20Software/APLICATIVO%20PARA%20DESCOBRIR%20A%20SUA%20DOEN%C3%87A.pdf">Concepção de Software</a> 
+- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca/blob/main/Engenharia%20de%20Software/BackLog.pdf">Sprints e Product Backlogs</a> 
+- <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca/blob/main/Engenharia%20de%20Software/REQUISITOS%20FINAL.pdf">Levantamento de Requisitos Funcionais e não Funcionais</a> 
     
 - UML:
   - <a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca">Diagrama de Classes</a> 
