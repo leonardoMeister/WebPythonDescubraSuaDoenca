@@ -1,0 +1,17 @@
+O BANCO:
+	gerenciamento dos dados do cliente como seus dados sensíveis, sendo coerente com a ideia proposta, especificamente para a construção do site web. Está sujeito a modificações conforme implementação.
+Desc:
+Todas as ações realizadas pelo usuário serão salvas em log.
+Gerenciamento completo dos dados do sistema.
+Tabela responsável por login e dados pessoais.
+Tabela de doenças contraídas.
+Tabela de laudos, em análise.
+Estrutura genérica e simplificada.
+
+TABELAS PARA SEREM CRIADAS ainda no sistema
+alergia 
+sintomas
+endereço
+doenças
+
+será utilizado o banco SQLite
