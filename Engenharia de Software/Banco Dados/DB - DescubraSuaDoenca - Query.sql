@@ -2,7 +2,16 @@ CREATE DATABASE db_descubra_sua_doenca
 GO
 USE db_descubra_sua_doenca
 GO
+CREATE TABLE tb_endereco(
+	id_endereco int identity(1,1) not null,
+	cidade varchar(30) not null,
+	estado varchar(30) not null,
+	rua varchar(30)  null,
+	numero varchar(10) null,
 
+	primary key (id_endereco),
+)
+GO
 CREATE TABLE tb_usuario (
 	id_usuario INT IDENTITY(1,1) NOT NULL,
 	nome VARCHAR(50) NOT NULL,
@@ -10,8 +19,26 @@ CREATE TABLE tb_usuario (
 	telefone VARCHAR(14)  NULL,
 	email VARCHAR(40) NOT NULL,
 	senha VARCHAR(30) NOT NULL,
+	data_nascimento DATETIME null,
+	tipo_sanguineo varchar(10) null,
+	alergia varchar(10)  null,
+	endereco_id INT null,
+
+	CONSTRAINT FK_Endereco_usuario FOREIGN KEY (endereco_id) REFERENCES tb_endereco(id_endereco) ON DELETE CASCADE ,
+
 	PRIMARY KEY(id_usuario),
 ) 
+GO
+CREATE TABLE tb_doenca(
+	id_doenca int identity(1,1) not null,
+	nome varchar(30) not null,
+	descricao varchar(30) not null,
+	gravidade varchar(10) not null,
+	tratamento varchar(30) not null,
+	sintomas varchar(100) not null,
+
+	primary key(id_doenca),
+)
 GO
 CREATE TABLE tb_doencas_contraidas(
 	id_doencas_contraidas INT IDENTITY(1,1) NOT NULL,
@@ -25,21 +52,11 @@ CREATE TABLE tb_doencas_contraidas(
 	sintomas varchar(30) null,
 
 	usuario_id INT not null,
+	doenca_id INT null,
 
+	CONSTRAINT FK_Doenca FOREIGN KEY (doenca_id) REFERENCES tb_doenca(id_doenca) ON DELETE CASCADE ,
 	CONSTRAINT FK_Usuario_Doencas FOREIGN KEY (usuario_id) REFERENCES tb_usuario(id_usuario) ON DELETE CASCADE ,
 	PRIMARY KEY(id_doencas_contraidas),
-)
-GO
-CREATE TABLE tb_dados_pessoais(
-	id_dados_pessoais INT IDENTITY(1,1) NOT NULL,
-	data_nascimento DATETIME null,
-	tipo_sanguineo varchar(10) null,
-	alergia varchar(10) not null,
-	endereco varchar(30) null,
-	usuario_id INT not null,
-
-	CONSTRAINT FK_Usuario_dadosPessoais FOREIGN KEY (usuario_id) REFERENCES tb_usuario(id_usuario) ON DELETE CASCADE ,
-	PRIMARY KEY(id_dados_pessoais),
 )
 GO
 CREATE TABLE tb_clinica(
@@ -48,7 +65,11 @@ CREATE TABLE tb_clinica(
 	cnpj VARCHAR(14) NOT NULL,
 	telefone VARCHAR(14) NOT NULL,
 	endereco VARCHAR(30) NULL,
-	responsavel VARCHAR(30) NOT NULL
+	responsavel VARCHAR(30) NOT NULL,
+
+	endereco_id INT null,
+
+	CONSTRAINT FK_Endereco_Clinica FOREIGN KEY (endereco_id) REFERENCES tb_endereco(id_endereco) ON DELETE CASCADE ,
 
 	PRIMARY KEY(id_clinica),
 )
@@ -75,8 +96,8 @@ CREATE TABLE tb_laudos(
 	clinica_id INT null,
 	usuario_id INT not null,
 
-	CONSTRAINT FK_Usuario_laudo FOREIGN KEY (usuario_id) REFERENCES tb_usuario(id_usuario) ON DELETE CASCADE ,
-	CONSTRAINT FK_Clinica_laudo FOREIGN KEY (clinica_id) REFERENCES tb_clinica(id_clinica) ON DELETE CASCADE ,
+	CONSTRAINT FK_Usuario_laudo FOREIGN KEY (usuario_id) REFERENCES tb_usuario(id_usuario)  ,
+	CONSTRAINT FK_Clinica_laudo FOREIGN KEY (clinica_id) REFERENCES tb_clinica(id_clinica)  ,
 )
 GO
 CREATE TABLE tb_log (

@@ -199,6 +199,9 @@
     {% endblock %}
     </div>
 
+
+
+    {% block js %}
     <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
     <script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
 
@@ -221,21 +224,19 @@
             var seg = IDLE_TIMEOUT % 60;
             var oPanel = document.getElementById("jacareDagua");
 
-            if (oPanel){
+            if (oPanel) {
                 oPanel.innerHTML = (min + ":" + seg) + "";
             }
-            if(seg < 10){
+            if (seg < 10) {
                 oPanel.innerHTML = (min + ":0" + seg) + "";
             }
-                
+
             if (IDLE_TIMEOUT == 0) {
                 alert("Time expired!");
-                window.open(" {{ url_for('login.logoff') }} " , '_self')
+                window.open(" {{ url_for('login.logoff') }} ", '_self')
             }
         }
     </script>
-    {% block js %}
-
     {% endblock %}
 
 </body>
