@@ -4,7 +4,7 @@ import os
 
 from dir_home.home import bp_home
 from dir_doencas.doencas import bp_doenca
-from dir_OqueEuTenho.OqueEuTenho import bp_OqueEuTenho
+from dir_perfil.Perfil import bp_perfil
 from dir_acompanhamento.acompanhamento import bp_acompanhamento
 from dir_agendamento.agendamento import bp_agendamento
 from dir_meusGraficos.meusGraficos import bp_meusGraficos
@@ -22,7 +22,7 @@ app.register_blueprint(bp_meusGraficos)
 app.register_blueprint(bp_agendamento)
 app.register_blueprint(bp_home)
 app.register_blueprint(bp_doenca)
-app.register_blueprint(bp_OqueEuTenho)
+app.register_blueprint(bp_perfil)
 app.register_blueprint(bp_acompanhamento)
 
 @app.errorhandler(404)
