@@ -9,10 +9,13 @@
     <meta charset="utf-8">
     <title>Login - Descubra Sua Doença</title>
     <link rel="stylesheet" href="{{url_for('static', filename='loginCss/style.css')}}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.js') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+
 </head>
 
 {% endblock %}
+
+
 
 {% block body %}
 
@@ -88,11 +91,6 @@
     
 {% endblock %}
 
-
-
-{% block footer %}
-{{super()}}
-{%endblock%}
 
 {% block js %}
 <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>

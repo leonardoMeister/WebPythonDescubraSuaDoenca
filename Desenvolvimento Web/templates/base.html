@@ -18,6 +18,7 @@
     </title>
 
     {% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
     <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
     {% endblock %}
@@ -62,19 +63,8 @@
                         <a class="nav-link " href="{{ url_for('Laudo.rotaLaudo') }}">Laudos</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{ url_for('OqueEuTenho.rotaOqueEuTenho') }}"
-                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            O que eu tenho
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url_for('Perfil.editarPerfil') }}">Perfil</a>
                     </li>
 
                     <li class="nav-item">
@@ -202,10 +192,19 @@
 
 
     {% block js %}
+    <script src="{{ url_for('static', filename='sweetalert2.min.js') }}"></script>
     <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
     <script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
-
     <script>
+
+        Swal.fire({
+            title: 'Teste',
+            text: 'Sweet Alert2 Funciona',
+            icon: 'sucess',
+            confirmButtonText: 'OK'
+        });
+
+
         var IDLE_TIMEOUT = "{{ session['tempo'] * 60 }}"
         var tempo = IDLE_TIMEOUT;
         document.onclick = function () {

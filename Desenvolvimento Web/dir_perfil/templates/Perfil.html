@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+
+{% block title %} Perfil {% endblock %}
+
+
+{% block content %}
+<!--Bootsrap 4 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<div class="container">
+    <h2>Atualizar Dados do Perfil</h2>
+    <div class="card-body">
+        <form name="dadosPerfil" id="dadosPerfil" method="POST" enctype="multipart/form-data">
+            Nome Completo:
+            <div class="input-group form-group">
+                
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="nome" id="nome" maxlength="30" class="form-control" value="{{dados.nome}}" placeholder="Escreva seu Nome">
+
+            </div>
+            CPF (11 dígitos):
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="text" name="cpf" id="cpf" class="form-control" value="{% if (dados.cpf == none or dados.cpf =='')%}{% else %} {{dados.cpf}} {% endif %}" placeholder="000.000.000.00">
+            </div>
+
+            Tipo Sanguineo:
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="tipoSangue"> <i class="fas fa-plus"> </i> </label>
+                </div>
+                <select class="custom-select" id="tipoSangue" name="tipoSangue">
+                  <option disabled selected>Escolher...</option>
+                  <option {%if dados.tipoSague == "A+"%} selected {%endif %} value="A+">A+</option>
+                  <option {%if dados.tipoSague == "A-"%} selected {%endif %} value="A-">A-</option>
+                  <option {%if dados.tipoSague == "B+"%} selected {%endif %} value="B+">B+</option>
+                  <option {%if dados.tipoSague == "B-"%} selected {%endif %} value="B-">B-</option>
+                  <option {%if dados.tipoSague == "AB-"%} selected {%endif %} value="AB-">AB-</option>
+                  <option {%if dados.tipoSague == "AB+"%} selected {%endif %} value="AB+">AB+</option>
+                  <option {%if dados.tipoSague == "O+"%} selected {%endif %} value="O+">O+</option>
+                  <option {%if dados.tipoSague == "O-"%} selected {%endif %} value="O-">O-</option>
+                </select>
+              </div>
+
+            Telefone:
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                </div>
+                <input  type="text" name="telefone" id="telefone" class="form-control" value="{% if (dados.telefone == none or dados.telefone == '')%}{% else %} {{dados.telefone}} {% endif %}" placeholder="(00) 0000-00000"   >
+            </div>
+
+            Alergia:
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="tipoSangue"> <i class="fas fa-bomb"> </i> </label>
+                </div>
+                <select class="custom-select" id="alergia" name="alergia">
+                  <option disabled selected>Escolher...</option>
+                  <option {%if dados.alergia == "Lactea"%} selected {%endif %} value="Lactea">Lactea</option>
+                  <option {%if dados.alergia == "Medicamentos"%} selected {%endif %} value="Medicamentos">Medicamentos</option>
+                  <option {%if dados.alergia == "Amendoas"%} selected {%endif %} value="Amendoas">Amendoas</option>
+                  <option {%if dados.alergia == "Anti-Inflamatorios"%} selected {%endif %} value="Anti-Inflamatorios">Anti-Inflamatorios</option>
+                  <option {%if dados.alergia == "Mel"%} selected {%endif %} value="Mel">Mel</option>
+                  <option {%if dados.alergia == "Sem Alergia"%} selected {%endif %} value="Sem Alergia">Sem Alergia</option>
+                </select>
+              </div>
+
+            <div class="form-group">
+                <input type="submit" value="Confirmar" class=" float-right login_btn">
+                <br>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+{% block js %}
+{{ super() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<script type="text/javascript">
+    $("#telefone").mask("(00) 0000-00000");
+    $("#cpf").mask("000.000.000.00");
+</script>
+
+<script>
+
+    $SCRIPT_ROOT = {{request.script_root | tojson | safe}}; // pega a url da barra de endereço
+
+    $('#dadosPerfil').submit(function (e) {
+        // parar o envio para poder fazer manualmente
+        e.preventDefault();
+        // captura o form
+        var form = $('#dadosPerfil')[0];
+        // cria o FormData {Object}
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "{{url_for('Perfil.salvandoDados')}}",
+            data: data,
+            processData: false, // impedir que o jQuery transforme a "data" em querystring
+            contentType: false, // desabilitar o cabeçalho "Content-Type"
+            cache: false, // desabilitar o "cache"
+            timeout: 600000, // definir um tempo limite (opcional)
+            // manipular o retorno da requisição
+            success: function (data) {
+                if (!data.erro) {
+                    Swal.fire({
+                        title: '',
+                        text: data.mensagem,
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.replace($SCRIPT_ROOT +
+                                "{{ url_for('home.rotaHome') }}");
+                        }
+                    });
+                } else {
+                    Swal.fire("", data.mensagem + '<br>' + data.mensagem_exception, "error");
+                    console.log(data.mensagem_exception);
+                }
+            },
+            // manipular erros da requisição
+            error: function (e) {
+                console.log(e);
+            }
+        }) // fim execução ajax
+    }) // fim função evento submit
+    // incluir aqui a opção para editar
+</script>
+{% endblock js %}
