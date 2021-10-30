@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template , request,jsonify, session
 from dir_login.login import validarSessao
-from dao_project.ModelUsuario import DAOUsuario, Usuario
+from dao_project.ModelUsuario import DAOUsuario, Usuario 
 
 
 
@@ -12,7 +12,7 @@ def editarPerfil():
     nome = session['nome']
     banco = DAOUsuario()
     dados = banco.SelectEmail(email=nome)
-    return render_template("teste.html", dados = dados)
+    return render_template("Perfil.html", dados = dados)
 
 @bp_perfil.route("/salvo" , methods = ['POST'])
 @validarSessao
