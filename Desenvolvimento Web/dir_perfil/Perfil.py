@@ -14,6 +14,12 @@ def editarPerfil():
     dados = banco.SelectEmail(email=nome)
     return render_template("Perfil.html", dados = dados)
 
+@bp_perfil.route("/endereco" )
+@validarSessao
+def editarEndereco():
+    dados = "Base de dados"
+    return render_template("Endereco.html", dados = dados)
+
 @bp_perfil.route("/salvo" , methods = ['POST'])
 @validarSessao
 def salvandoDados():
