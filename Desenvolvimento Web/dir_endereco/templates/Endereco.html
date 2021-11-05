@@ -10,7 +10,7 @@
             <li><a href="{{ url_for('Perfil.editarPerfil') }}">Perfil</a></li>
             <li><a href="{{ url_for('Endereco.editarEndereco') }}">Endereços</a></li>
             <li><a href="{{ url_for('Perfil.gerarPdfGeral') }}">PDF</a></li>
-
+            
             <li>
                 <a class="nav-link disabled font-weight-bold text-silver" id="jacareDagua">
                     <span class="font-weight-bold text-silver"></span>
@@ -30,113 +30,81 @@
     <div class="container" id="wrapper">
         <h2>Atualizar Dados do Perfil</h2>
         <div class="card-body">
-            <form name="dadosPerfil" id="dadosPerfil" method="POST" enctype="multipart/form-data">
+            <form name="dadosEndereco" id="dadosEndereco" method="POST" enctype="multipart/form-data">
                 
                 <div class="input-group form-group">
                     
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        Nome Completo:
+                        Cidade:
                     </div>
-                    <input type="text" name="nome" id="nome" maxlength="30" class="form-control" value="{{dados.nome}}"
-                        placeholder="Escreva seu Nome">
+                    <input type="text" name="cidade" id="cidade" maxlength="50" class="form-control" 
+                    value="{{ dados.cidade }}"
+                        placeholder="Escreva a Cidade onde mora.">
 
                 </div>
                 <br>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        CPF (11 dígitos):
+                        Estado :
                     </div>
-                    <input type="text" name="cpf" id="cpf" class="form-control"
-                        value="{% if (dados.cpf == none or dados.cpf =='')%}{% else %} {{dados.cpf}} {% endif %}"
-                        placeholder="000.000.000.00">
-                </div>
+                    <input type="text" name="Estado" maxlength="2" id="Estado" class="form-control"
+                        value="{{ dados.estado }}"
+                        placeholder="Ex: (SC)">
+                </div>                
                 <br>
-                <div class="input-group mb-3">
-                    <i class="fas fa-plus"> </i> Tipo Sanguineo:
-                    <select class="custom-select" id="tipoSangue" name="tipoSangue">
-                        <option disabled selected>Escolher...</option>
-                        <option {%if dados.tipoSague == "A+"%} selected {%endif %} value="A+">A+</option>
-                        <option {%if dados.tipoSague == "A-"%} selected {%endif %} value="A-">A-</option>
-                        <option {%if dados.tipoSague == "B+"%} selected {%endif %} value="B+">B+</option>
-                        <option {%if dados.tipoSague == "B-"%} selected {%endif %} value="B-">B-</option>
-                        <option {%if dados.tipoSague == "AB-"%} selected {%endif %} value="AB-">AB-</option>
-                        <option {%if dados.tipoSague == "AB+"%} selected {%endif %} value="AB+">AB+</option>
-                        <option {%if dados.tipoSague == "O+"%} selected {%endif %} value="O+">O+</option>
-                        <option {%if dados.tipoSague == "O-"%} selected {%endif %} value="O-">O-</option>
-                    </select>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                        Rua:
+                    </div>
+                    <input type="text" name="Rua" maxlength="50" id="Rua" class="form-control"
+                        value="{{ dados.rua }}"
+                        placeholder="Escreva a rua onde mora.">
                 </div>
                 <br>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                        Telefone:
+                        Numero:
                     </div>
-                    <input type="text" name="telefone" id="telefone" class="form-control"
-                        value="{% if (dados.telefone == none or dados.telefone == '')%}{% else %} {{dados.telefone}} {% endif %}"
-                        placeholder="(00) 0000-00000">
-                </div>
-
-                <br>
-                <div class="input-group mb-3">
-                    <i class="fas fa-bomb"> </i>Alergia:
-                    <select class="custom-select" id="alergia" name="alergia">
-                        <option disabled selected>Escolher...</option>
-                        <option {%if dados.alergia == "Lactea"%} selected {%endif %} value="Lactea">Lactea</option>
-                        <option {%if dados.alergia == "Medicamentos"%} selected {%endif %} value="Medicamentos">
-                            Medicamentos</option>
-                        <option {%if dados.alergia == "Amendoas"%} selected {%endif %} value="Amendoas">Amendoas
-                        </option>
-                        <option {%if dados.alergia == "Anti-Inflamatorios"%} selected {%endif %}
-                            value="Anti-Inflamatorios">Anti-Inflamatorios</option>
-                        <option {%if dados.alergia == "Mel"%} selected {%endif %} value="Mel">Mel</option>
-                        <option {%if dados.alergia == "Sem Alergia"%} selected {%endif %} value="Sem Alergia">Sem
-                            Alergia</option>
-                    </select>
-                </div>
-
+                    <input type="text" name="Numero" maxlength="10" id="Numero" class="form-control"
+                        value="{{ dados.numero }}"
+                        placeholder="Escreva o numero da sua casa">
+                </div> 
                 <br>
                 <div class="form-group">
                     <input type="submit"  value="Confirmar" class=" float-right login_btn">
-                    <a href="{{ url_for('Perfil.perfilGerarPdf') }}"> <input type="button" value="PDF"></a>
+                    <a href="{{ url_for('Endereco.enderecoGerarPdf') }}"> <input type="button" value="PDF"></a>
                     <br>
                 </div><br>
-
             </form>
-
         </div>
-
     </div>
-
 </div>
 {% endblock divMain %}
 
+
 {% block herancaJs %}
     {{ super() }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
-<script type="text/javascript">
-    $("#telefone").mask("(00) 0000-00000");
-    $("#cpf").mask("000.000.000.00");
-</script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 
     $SCRIPT_ROOT = {{request.script_root | tojson | safe}}; // pega a url da barra de endereço
 
-    $('#dadosPerfil').submit(function (e) {
+    $('#dadosEndereco').submit(function (e) {
         // parar o envio para poder fazer manualmente
         e.preventDefault();
         // captura o form 
-        var form = $('#dadosPerfil')[0];
+        var form = $('#dadosEndereco')[0];
         // cria o FormData {Object}
         var data = new FormData(form);
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "{{url_for('Perfil.salvandoDados')}}",
+            url: "{{url_for('Endereco.salvandoDados')}}",
             data: data,
             processData: false, // impedir que o jQuery transforme a "data" em querystring
             contentType: false, // desabilitar o cabeçalho "Content-Type"

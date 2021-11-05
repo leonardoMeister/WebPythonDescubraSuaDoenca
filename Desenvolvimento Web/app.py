@@ -1,4 +1,4 @@
-from flask import Flask , render_template,  session
+from flask import Flask , render_template,  session, request
 from datetime import timedelta
 import os
 
@@ -10,7 +10,7 @@ from dir_agendamento.agendamento import bp_agendamento
 from dir_meusGraficos.meusGraficos import bp_meusGraficos
 from dir_laudo.laudo import bp_laudo
 from dir_login.login import bp_login
-
+from dir_endereco.Endereco import bp_endereco
 
 app = Flask(__name__) 
 
@@ -24,6 +24,8 @@ app.register_blueprint(bp_home)
 app.register_blueprint(bp_doenca)
 app.register_blueprint(bp_perfil)
 app.register_blueprint(bp_acompanhamento)
+app.register_blueprint(bp_endereco)
+
 
 @app.errorhandler(404)
 def rotaErro404(error):
@@ -37,6 +39,6 @@ def before_request():
     #SERVE PARA TER UMA FORMA DE ACESSAR O VALOR TEMPO EM OUTROS LUGARES DA SESSAO
     session['tempo'] = tempo
     app.permanent_session_lifetime = timedelta(minutes = tempo)
-
+    
 if __name__ == "__main__":
     app.run(debug= True, port= 5000)

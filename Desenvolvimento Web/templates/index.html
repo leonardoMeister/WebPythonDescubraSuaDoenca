@@ -9,9 +9,12 @@
 	<html> 
 	{% block head %}
 	<head>
-		<title>Stellar by HTML5 UP</title>
+		<title>Descubra Sua Doença</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link rel="shortcut icon" href="{{ url_for('static', filename = 'Desagrupar.png')}}">
+
 		<link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
 		<noscript>

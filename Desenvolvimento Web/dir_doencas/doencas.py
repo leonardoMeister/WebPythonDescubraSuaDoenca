@@ -2,17 +2,21 @@ from re import S
 from flask import Blueprint, render_template , request, session, jsonify
 from dir_login.login import validarSessao
 from dao_project.ControlDoenca import DAODoenca, Doenca
+from funcoes import LogEnum, Funcoes
 
 bp_doenca = Blueprint('doenca',__name__, url_prefix="/doença", template_folder= 'templates')
 
 @bp_doenca.route("/")
 @validarSessao
 def rotaMenuDoencas():
+
+    
     return render_template("doencas.html")
 
 @bp_doenca.route("/cadastrarDoenca")
 @validarSessao
 def rotaCadastrarNova():
+    Funcoes.criaLog(LogEnum.INFO, LogEnum.redirect, request.path, session['nome'], "Redirecionando")
     return render_template("cadastroDoencas.html")
 
 
@@ -31,18 +35,24 @@ def salvandoDoenca():
 
         #Verificando a existencia de uma doença já com esse nome no banco
         if (banco.SelectName(nomeDoenca) != []  ):
+            Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Nome de doença repetida")
             return jsonify(erro = True , mensagem = "Doença Inválida", mensagem_exception = "Essa doença já está cadastrada!")        
         if(len(nomeDoenca)<3):
+            Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Nome curto de mais")
             return jsonify(erro = True , mensagem = "Erro de Campo", mensagem_exception = "Nome Curto De mais!")        
         if(len(descricaoDoenca)<50):
+            Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Descrição curta de mais")
             return jsonify(erro = True , mensagem = "Erro de Campo", mensagem_exception = "Descrição precisa de no mínimo 50 caracteres!")        
         if(len(tratamentoDoenca)<50):
+            Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Tratamento curto de mais")
             return jsonify(erro = True , mensagem = "Erro de Campo", mensagem_exception = "Tratamento precisa de no mínimo 50 caracteres!")        
         if(len(sintomasDoenca)<30):
+            Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Sintomas curto de mais")
             return jsonify(erro = True , mensagem = "Erro de Campo", mensagem_exception = "Sintomas precisa de no mínimo 30 caracteres!")        
 
     except Exception as e:
         _msg_exception = e.args
+        Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Erro de campo")
         return jsonify(erro = True , mensagem = "Campo Invalido", mensagem_exception = _msg_exception)
     finally:
         pass
@@ -54,7 +64,9 @@ def salvandoDoenca():
 
     except Exception as e:
         _msg_exception = e.args
+        Funcoes.criaLog(LogEnum.WARNING, LogEnum.excecao, request.path, session['nome'], "Erro de banco")
         jsonify(erro = True , mensagem = "ERRO BANCO", mensagem_exception = _msg_exception)
     
     #Deu certo a att no Banco
+    Funcoes.criaLog(LogEnum.WARNING, LogEnum.save, request.path, session['nome'], "Dados de doença adicionados no banco")
     return jsonify(erro = False , mensagem = "Sucesso", mensagem_exception = "Dados Salvos Com Sucesso, Clique em OK")
