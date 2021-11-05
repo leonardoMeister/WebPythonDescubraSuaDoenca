@@ -12,10 +12,7 @@ class Usuario():
         self.telefone = telefone
         self.email = email
         self.data_nascimento = data_nascimento
-        if endereco_id:
-            self.endereco = DAOEndereco().SelectId(endereco_id)
-        else:
-            self.endereco = Endereco()
+        self.endereco = endereco_id
         self.tipoSague = tipo_sangue
         self.alergia = alergia
 
@@ -54,8 +51,10 @@ class DAOUsuario():
         return self.banco.ExecutarComando("delete from tb_usuario where id_usuario = ?" , [id_usuario])
 
     def Update(self, user):
-        print("banana")
         return self.banco.ExecutarComando("update tb_usuario set nome = ?, cpf=?, telefone=?, tipo_sanguineo=?, alergia=? where email ==?" , [user.nome, user.cpf, user.telefone, user.tipoSague, user.alergia, user.email])
 
+    def UpdateEndereco(self,user):
+        return self.banco.ExecutarComando("update tb_usuario set endereco_id = ? where email ==?" , [user.endereco, user.email])
+
     def Insert(self, user):        
-        return self.banco.ExecutarComando("insert into tb_usuario (nome, telefone, email, senha, data_nascimento, tipo_sanguineo, alergia, endereco_id) values (?, ?, ?, ?, ?, ?, ?, ?)", [user.nome,user.telefone,user.email,user.senha,user.data_nascimento,user.tipoSague,user.alergia,user.endereco.id_endereco])
+        return self.banco.ExecutarComando("insert into tb_usuario (nome, telefone, email, senha, data_nascimento, tipo_sanguineo, alergia, endereco_id) values (?, ?, ?, ?, ?, ?, ?, ?)", [user.nome,user.telefone,user.email,user.senha,user.data_nascimento,user.tipoSague,user.alergia,user.endereco])

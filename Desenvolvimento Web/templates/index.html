@@ -1,0 +1,235 @@
+{% block html %}
+		
+	<!DOCTYPE HTML>
+	<!--
+		Stellar by HTML5 UP
+		html5up.net | @ajlkn
+		Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	-->
+	<html> 
+	{% block head %}
+	<head>
+		<title>Descubra Sua Doença</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link rel="shortcut icon" href="{{ url_for('static', filename = 'images/icone.png')}}">
+
+		<link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+		<noscript>
+			<link rel="stylesheet" href="{{url_for('static', filename='assets/css/noscript.css')}}" /></noscript>
+	</head>
+	{% endblock head %}
+
+	{% block body %}
+		<body class="is-preload">
+
+			<!-- Wrapper -->
+			<div id="wrapper">
+				{% block header %}
+					<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="{{ url_for('static', filename = 'images/coracao.png')}}" alt="" /></span>
+						<h1>Remedium</h1>
+						<p>Ajudando pessoas de todo Brasil, a encontrar "A Cura".<br />
+							Produzido por <a href="https://github.com/leonardoMeister">@leonardoMeister</a> para <a href="">VOCÊ</a>.
+						</p>
+					</header>
+				{% endblock header %}
+
+				{% block menu %} 
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="{{ url_for('home.rotaHome') }}" class="active">Home</a></li>
+							<li><a href="{{ url_for('doenca.rotaMenuDoencas') }}">Doenças</a></li>
+							
+							<li><a href="{{ url_for('Agendamento.rotaAgendamento') }}">Agendamento</a></li>
+							<li><a href="{{ url_for('Acompanhamento.rotaAcompanhamento') }}">Tratamento</a></li>
+							<li><a href="{{ url_for('Laudo.rotaLaudo') }}">Laudos</a></li>
+							<li><a href="{{ url_for('Perfil.editarPerfil') }}">Perfil</a></li>
+							<li><a href="{{ url_for('login.logoff') }}">Logoff</a></li>
+							<li>
+								<a class="nav-link disabled font-weight-bold text-silver" id="jacareDagua">
+									<span class="font-weight-bold text-silver"></span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				{% endblock menu %}
+				
+				{% block divMain %}
+					<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+						<section id="intro" class="main">
+							<div class="spotlight">
+								<div class="content">
+									<header class="major">
+										<h2>Projeto Remedium 2021.</h2>
+									</header>
+									<p>Do Latim “Remedium” que significa a Cura, a intenção do projeto é lhe ajudar a
+										encontrar a cura, através da ligação das informações necessárias com tecnologia
+										e segurança, todos conhecimentos adquiridos na melhor universidade catarinense
+										<a href="https://www.uniplaclages.edu.br/">UNIPLAC</a> .</p>
+									<ul class="actions">
+										<li><a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca" class="button">Acompanhe GitHub</a></li>
+									</ul>
+								</div>
+								<span class="image"><img src="{{ url_for('static', filename = 'images/Saude.png')}}"
+										alt="" /></span>
+							</div>
+						</section>
+
+						<!-- First Section -->
+						<section id="first" class="main special">
+							<header class="major">
+								<h2>Destaques Projeto.</h2>
+							</header>
+							<ul class="features">
+								<li>
+									<span class="icon solid major style1 fa-gem"></span>
+									<h3>Design Simplificado.</h3>
+									<p>Arquitetura de navegação planejada para sua facilidade, com componentes e tela adaptadas 
+										e multiplataforma.</p>
+								</li>
+								<li>
+									<span class="icon major style3 fa-user-circle"></span>
+									<h3>Experiencia de Usuario.</h3>
+									<p>Uma experiência assíncrona no cadastro de novas informações, com formulários simplificados 
+										e inteligentes.</p>
+								</li>
+								<li>
+									<span class="icon major style5 fa-folder"></span>
+									<h3>Segurança Informação.</h3>
+									<p>Criptografia de ponta a ponta para os seus dados sensíveis, validação de sessões  e 
+										tratamento de dados. </p>
+								</li>
+							</ul>
+							<footer class="major">
+								<ul class="actions special">
+									<li><a href="https://www.consultoriaiso.org/iso-27001-padrao-internacional-em-seguranca-da-informacao/" class="button">ISO 27001</a></li>
+								</ul>
+							</footer>
+						</section>
+
+						<!-- Get Started -->
+						<section id="cta" class="main special">
+							<header class="major">
+								<h2>Comece agora!</h2>
+								<p>Comece agora a usar, complete os seus dados pessoais para poder usufruir com mais<br>
+									facilidade do nosso conteúdo, ou assista a um pequeno tutorial antes de começar.</p>
+							</header>
+							<footer class="major">
+								<ul class="actions special">
+									<li><a href="#" class="button primary">Comece já!</a></li>
+									<li><a href="#" class="button">Tutorial</a></li>
+								</ul>
+							</footer>
+						</section>
+
+					</div>
+				{% endblock divMain %}
+				
+
+				{% block footer %}
+					<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>"Descubra Sua Doença" Remedium</h2>
+							<p>Uma parceria entre as maiores mentes da Univer-<br>sidade do Planalto Catarinense,
+								para buscar e<br> conectar o conhecimento e lhe proporcionar uma<br> experiência excepcional em mais de uma
+								plataforma.</p>
+							<ul class="actions">
+								<li><a href="https://github.com/leonardoMeister/WebPythonDescubraSuaDoenca" class="button">GitHub</a></li>
+							</ul>
+						</section>
+						<section>
+							<h2>Leonardo Meister</h2>
+							<dl class="alt">
+								<dt>Endereço</dt>
+								<dd>Snº Estrada Nova &bull; Monte Castelo, 89380000 &bull; BR</dd>
+								<dt>WhatsApp</dt>
+								<dd>+55 (47) 9 9239-8644</dd>
+								<dt>Email</dt>
+								<dd><a href="#">leozinhomm1@gmail.com</a></dd>
+							</dl>
+							<ul class="icons">
+								<li><a href="https://www.facebook.com/leonardo.mmeister/" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/leonardo_maister/" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/leonardoMeister" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/leonardo-margoti-meister-94170b215/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+								<li><a href="https://www.youtube.com/channel/UC6L9tw2AfxHJYpDeZ7pIxkw" class="icon brands fa-youtube alt"><span class="label">Youtube</span></a></li>
+							</ul>
+						</section>
+						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+				{% endblock footer %}
+			</div>
+
+			{% block herancaJs %}
+				<!-- Scripts -->
+				<script src="{{ url_for('static', filename = 'assets/js/jquery.min.js')}}"></script>
+				<script src="{{ url_for('static', filename = 'assets/js/jquery.scrollex.min.js')}}"></script>
+				<script src="{{ url_for('static', filename = 'assets/js/jquery.scrolly.min.js')}}"></script>
+				<script src="{{ url_for('static', filename = 'assets/js/browser.min.js')}}"></script>
+				<script src="{{ url_for('static', filename = 'assets/js/breakpoints.min.js')}}"></script>
+ 				<script src="{{ url_for('static', filename = 'assets/js/main.js')}}"></script>
+
+
+				<script src="{{ url_for('static', filename='sweetalert2.min.js') }}"></script>
+   				<script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
+    			<script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
+
+				<script>
+
+					Swal.fire({
+						title: 'Teste',
+						text: 'Sweet Alert2 Funciona',
+						icon: 'sucess',
+						confirmButtonText: 'OK'
+					});
+			
+			
+					var IDLE_TIMEOUT = "{{ session['tempo'] * 60 }}"
+					var tempo = IDLE_TIMEOUT;
+					document.onclick = function () {
+						IDLE_TIMEOUT = tempo;
+					};
+			
+					document.onkeypress = function () {
+						IDLE_TIMEOUT = tempo;
+					};
+			
+					window.setInterval(CheckIdleTime, 1000);
+			
+					function CheckIdleTime() {
+						IDLE_TIMEOUT--;
+						var min = parseInt(IDLE_TIMEOUT / 60);
+						var seg = IDLE_TIMEOUT % 60;
+						var oPanel = document.getElementById("jacareDagua");
+			
+						if (oPanel) {
+							oPanel.innerHTML = (min + ":" + seg) + "";
+						}
+						if (seg < 10) {
+							oPanel.innerHTML = (min + ":0" + seg) + "";
+						}
+			
+						if (IDLE_TIMEOUT == 0) {
+							alert("Time expired!");
+							window.open(" {{ url_for('login.logoff') }} ", '_self')
+						}
+					}
+				</script>
+			{% endblock herancaJs %}
+
+			{% block js %}  {% endblock js %}
+
+		</body>
+	{% endblock body %}
+	
+	</html>
+{% endblock html %}

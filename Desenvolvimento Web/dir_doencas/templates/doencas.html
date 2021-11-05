@@ -1,11 +1,24 @@
-{% extends "base.html" %}
-
-{% block title %} Home {% endblock %}
+{% extends "index.html" %}
 
 
-{% block content %}
+{% block header %}{% endblock header %}
 
-    <h1>Exemplo para doença - Leonardo meister</h1>
-    
-    
-{% endblock %}
+{% block menu %}
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="{{ url_for('home.rotaHome') }}" class="active">Home</a></li>
+
+            <li><a href="{{ url_for('doenca.rotaMenuDoencas') }}">Pesquisa</a></li>
+            <li><a href="{{ url_for('doenca.rotaCadastrarNova') }}">Cadastrar Doença</a></li>
+            <li><a href="{{ url_for('Agendamento.rotaAgendamento') }}">Edição Doenças</a></li>
+            
+            <li>
+                <a class="nav-link disabled font-weight-bold text-silver" id="jacareDagua">
+                    <span class="font-weight-bold text-silver"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock menu %}
+
