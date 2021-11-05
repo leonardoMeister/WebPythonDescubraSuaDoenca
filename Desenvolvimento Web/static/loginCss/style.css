@@ -1,6 +1,6 @@
 html,
 body {
-    background-image: url('/static/fundo.jpg');
+    background-image: url('/static/images/fundo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%; 

@@ -5,7 +5,7 @@ from funcoes import Funcoes , LogEnum
 class Banco():
 
     def ConexaoBanco(self):
-        caminho = "C:\\Users\\leozi\\Desktop\\Repositorios Python\\WebPythonDescubraSuaDoenca\\Engenharia de Software\\Banco Dados\\BancoDescubraSuaDoenca.db"
+        caminho = "static\\Banco Dados\\BancoDescubraSuaDoenca.db"
         con = None
         try:
             con = sqlite3.connect(caminho)
