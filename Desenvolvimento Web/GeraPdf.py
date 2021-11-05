@@ -20,17 +20,19 @@ class PDF(FPDF):
     
     #region PDF GERAL
     def pdfGeral(self):
+        
         pdf = PDF('P', 'mm', 'A4') # L paisagem, P retrato
         pdf.set_author("Leonardo Meister.")
-        pdf.set_title('Dados do Perfil.')
+        pdf.set_title('Dados do Gerais.')
         pdf.alias_nb_pages() # mostra o numero da pagina no rodapé
         pdf.add_page()
         # mostra o cabeçalho
         pdf.set_font('arial', 'b', 12)
-        pdf.cell(0, 5, 'Dados do Perfil.', 0, 1, 'C', 0)
+        pdf.cell(0, 5, 'Dados do Gerais.', 0, 1, 'C', 0)
         pdf.set_font('arial', '', 6)
         pdf.cell(280, 4, "Emitido em: " + str(datetime.now()), 0, 1, 'R')
         pdf.ln(5)
+        """
         # monta tabela para mostrar os dados
         pdf.set_font('arial', 'B', 8)
         pdf.cell(10, 5, 'ID', 0, 0, 'L')
@@ -42,7 +44,7 @@ class PDF(FPDF):
         pdf.cell(90, 5, 'Endereço', 0, 1, 'L')
         # busca e mostra todos os clientes
         pdf.set_font('arial', '', 8)
-
+        """
         #cliente = Clientes()
         #res = cliente.selectALL()
         #if res:

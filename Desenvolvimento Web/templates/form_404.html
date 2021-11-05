@@ -1,17 +1,35 @@
-{% extends "base.html" %}
+{% extends 'index.html' %}
 
-{% block title %} Erro 404 {% endblock %}
+{% block head %}
 
-{% block content %}
+<head>
+    <title>ERRO ROTA!</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<div style="height: 10%; background-image: url('https://e3z7c6v7.rocketcdn.me/blog/wp-content/uploads/2019/02/274034-erro-de-http-wordpress-como-corrigir.jpg');" >
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/icone.png')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
+</head>
+{% endblock head %}
 
+{% block header %}{% endblock header %}
+
+{% block menu %}{% endblock menu %}
+
+{% block divMain %}
+<br><br><br><br><br>
+<div id="main">
+
+    <br><br><br>
     <ul>
-        <li><h1>Pagina não encontrada !!! - Leonardo meister</h1></li>
-        <li><h1>Favor verificar o endereco</h1></li>
-        <li><a href="{{ url_for('home.rotaHome') }}">HOME</a></li>
+        <li>
+            <h1>Pagina não encontrada, favor verificar a rota do endereço!</h1>
+        </li>
     </ul>
+    <br><br><br>
+</div>
+{% endblock divMain %}
 
-    <p>{{ Error }}</p>
-    
-{% endblock %}
+{% block footer %}{% endblock footer %}
+
+{% block herancaJs %}{% endblock herancaJs %}

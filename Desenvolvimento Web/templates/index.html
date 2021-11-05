@@ -184,14 +184,6 @@
     			<script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
 
 				<script>
-
-					Swal.fire({
-						title: 'Teste',
-						text: 'Sweet Alert2 Funciona',
-						icon: 'sucess',
-						confirmButtonText: 'OK'
-					});
-			
 			
 					var IDLE_TIMEOUT = "{{ session['tempo'] * 60 }}"
 					var tempo = IDLE_TIMEOUT;

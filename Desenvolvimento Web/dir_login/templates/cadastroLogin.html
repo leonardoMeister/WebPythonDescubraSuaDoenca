@@ -1,25 +1,24 @@
-{% extends "base.html" %}
-{{ super() }}
-   
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/icone.png')}}">
+    
+        <title>
+            Cadastro Login - Descubra Sua Doença
+        </title>
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{url_for('static', filename='loginCss/style.css')}}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+    </head>
 
-{% block head %}
-{{super()}}
-
-<head>
-    <meta charset="utf-8">
-    <title>Login - Descubra Sua Doença</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='loginCss/style.css')}}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
-
-</head>
-
-{% endblock %}
-
-
-
-{% block body %}
-
-<body>
+    
+<body> 
     <title>Login Page</title>
 
     <!--Bootsrap 4 CDN-->
@@ -41,21 +40,21 @@
 
                         <div class="input-group form-group">
                             <input type="text" name="name" id="name" class="form-control" required
-                                placeholder="UserName">
+                            autocomplete="off" placeholder="UserName">
                             <div class="valid-feedback">Nome ok</div>
                             <div class="invalid-feedback">Nome já existente</div>
                         </div>
 
                         <div class="input-group form-group">
                             <input type="email" name="email" id="email" class="form-control" required
-                                placeholder="Email">
+                                autocomplete="off" placeholder="Email">
                             <div class="valid-feedback">Email ok</div>
                             <div class="invalid-feedback">Email Já existente</div>
                         </div>
 
                         <div class="input-group form-group">
                             <input type="password" name="senha1" id="senha1" class="form-control" required
-                                placeholder="Password">
+                            autocomplete="off" placeholder="Password">
                         </div>
 
                         <div class="form-group">
@@ -73,26 +72,16 @@
 
 
 </body>
+<style>
+    input:focus { 
+        outline: none !important;
+        background-color: rgb(158, 159, 228) !important;
+        box-shadow: 0 0 10px #719ECE;
+    }
+
+</style>
 
 
-{% block style %}
-
-
-    <style>
-        input:focus { 
-            outline: none !important;
-            background-color: rgb(158, 159, 228) !important;
-            box-shadow: 0 0 10px #719ECE;
-        }
-
-    </style>
-
-}
-    
-{% endblock %}
-
-
-{% block js %}
 <script src="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/js/bootstrap.min.js') }}"> </script>
 <script src=" {{ url_for( 'static' , filename ='jquery-3.6.0.min.js'  )         }} "></script>
 
@@ -125,7 +114,5 @@
     };
     
 </script>
-{% endblock js %}
 
-
-{% endblock %}
+</html>
