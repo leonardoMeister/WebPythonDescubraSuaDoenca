@@ -18,8 +18,8 @@
                                 <span class="input-group-text"><i class="fas fa-tag"></i></span>
                                 Nome:
                             </div>
-                            <input type="text" name="nomeDoenca" autocomplete="off" id="nomeDoenca" maxlength="30" class="form-control" value=""
-                                placeholder="Escreva o Nome da Doença">
+                            <input type="text" name="nomeDoenca" autocomplete="off" id="nomeDoenca" maxlength="30" class="form-control"
+                            value="{{doenca.nome}}" placeholder="Escreva o Nome da Doença">
         
                         </div>
                         <br>
@@ -28,7 +28,7 @@
                                 <span class="input-group-text"><i class="fas fa-comment"></i></span>
                                 Descrição:
                             </div>
-                            <textarea name="descricao" id="descricao" autocomplete="off" maxlength="200" cols="30" rows="2" placeholder="Descrição da Doença"></textarea>
+                            <textarea name="descricao" id="descricao" autocomplete="off" maxlength="200" cols="30" rows="2" placeholder="Descrição da Doença">{{doenca.descricao}}</textarea>
 
                         </div>
 
@@ -37,11 +37,11 @@
                             <i class="fas fa-bomb"> </i>Gravidade:
                             <select class="custom-select" id="gravidade" name="gravidade">
                                 <option disabled selected>Escolher...</option>
-                                <option  value="0">0 - Suave</option>
-                                <option  value="1">1 - Normal</option>
-                                <option  value="2">2 - Um Pouco Grave</option>
-                                <option  value="3">3 - Grave</option>
-                                <option  value="4">4 - Muito Grave</option>
+                                <option {%if doenca.gravidade == "Suave"%} selected {%endif %} value="Suave">0 - Suave</option>
+                                <option {%if doenca.gravidade == "Normal"%} selected {%endif %} value="Normal">1 - Normal</option>
+                                <option {%if doenca.gravidade == "Um pouco grave"%} selected {%endif %} value="Um pouco grave">2 - Um Pouco Grave</option>
+                                <option {%if doenca.gravidade == "Grave"%} selected {%endif %} value="Grave">3 - Grave</option>
+                                <option {%if doenca.gravidade == "Muito Grave"%} selected {%endif %} value="Muito Grave">4 - Muito Grave</option>
 
                             </select>
                         </div>
@@ -53,7 +53,7 @@
                                 <span class="input-group-text"><i class="fas fa-eye-dropper"></i></span>
                                 Tratamento:
                             </div>
-                            <textarea name="tratamento" id="tratamento" autocomplete="off" maxlength="200"  rows="2" placeholder="Descreva o Tratamento"></textarea>
+                            <textarea name="tratamento" id="tratamento" autocomplete="off" maxlength="200"  rows="2" placeholder="Descreva o Tratamento">{{doenca.tratamento}}</textarea>
                         </div>
                          <br>
                         <div class="input-group form-group">
@@ -61,10 +61,11 @@
                                 <span class="input-group-text"><i class="fas fa-list-alt"></i></span>
                                 Sintomas:
                             </div>
-                            <textarea name="sintomas" id="sintomas" autocomplete="off" maxlength="100"  rows="2" placeholder="Sintomas da Doença"></textarea>
+                            <textarea name="sintomas" id="sintomas" autocomplete="off" maxlength="100"  rows="2" placeholder="Sintomas da Doença">{{doenca.sintomas}}</textarea>
                         </div>
         
                         <br><div class="form-group">
+                            <input type="hidden" name="id_doenca" value="{{ doenca.id_doenca }}">
                             <input type="submit" value="Confirmar" class=" float-right login_btn">
                             <br>
                         </div><br>

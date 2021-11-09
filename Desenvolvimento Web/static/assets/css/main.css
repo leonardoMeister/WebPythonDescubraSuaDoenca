@@ -2309,6 +2309,9 @@ input, select, textarea {
 		.icon.style5 {
 			color: #8cc9f0;
 		}
+		.icon.style6{
+			color: #849cb5cc;
+		}
 
 		@media screen and (max-width: 1680px) {
 
@@ -2901,6 +2904,9 @@ input, select, textarea {
 
 			.statistics li.style5 {
 				background-color: #8cc9f0;
+			}
+			.statistics li.style6 {
+				background-color: #849cb5cc;
 			}
 
 			.statistics li strong, .statistics li b {

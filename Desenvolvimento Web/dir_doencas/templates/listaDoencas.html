@@ -1,0 +1,46 @@
+{% extends 'doencas.html' %}
+
+{% block divMain %}
+<div id="main">
+    <h1 style="margin-left: 40px !important;">Listagem de Doenças</h1>
+
+    <tbody>
+
+        {% if dados: %}
+
+        <section id="intro" class="main">
+
+            {% for row in dados: %}
+
+
+            <section id="cta" class="main special">
+
+                <ul class="actions special" style="margin-bottom: 0px !important;">
+                    <li>
+                        <h3> <b>Id:</b> {{row[0]}}</h3>
+                    </li>
+                    <li> 
+                        <h3><b>Nome:</b> {{row[1]}}</h3>
+                    </li>
+
+                    <li>
+                        <form action="{{ url_for('doenca.atualizarDoenca') }}" method="POST" name="editUsuario{{ row[0] }}">
+                            <input type="hidden" name="id_doenca" value="{{ row[0] }}">
+                            <button type="submit" name="formEditCliente"> <i class="fas fa-edit"></i></button>
+                        </form>
+                    </li>
+
+                    <li>
+                        <form action="{{ url_for('doenca.deletarDoenca') }}" method="POST" name="deleteUsuario" id="deleteUsuario">
+                            <input type="hidden" name="id_doenca" value="{{ row[0] }}">
+                            <button type="submit" name="formDeleteCliente"> <i class="fas fa-trash"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </section>
+
+            {% endfor %}
+        </section>
+        {% endif %}
+</div>
+{% endblock divMain %}

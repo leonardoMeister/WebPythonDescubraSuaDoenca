@@ -20,19 +20,22 @@ class DAODoenca():
         self.banco = Banco()
 
     def SelectAll(self):    
-        return self.banco.ExecutarComando("select * from tb_endereco")
+        return self.banco.ExecutarComando("select * from tb_doenca")
         
-    def SelectId(self):
-        pass
+    def SelectId(self, idDoenca):
+        return self.banco.ExecutarComando("select * from tb_doenca where id_doenca == ?", [idDoenca])
 
     def SelectName(self, nome):
         return self.banco.ExecutarComando("select nome from tb_doenca where nome == ?", [nome])
     
-    def Drop(self):
-        pass
+    def SelectPorNome(self, nome):
+        return self.banco.ExecutarComando("select * from tb_doenca where nome == ?", [nome])
 
-    def Update(self):
-        pass
+    def Drop(self, idDoenca):
+        return self.banco.ExecutarComando("delete from tb_doenca where id_doenca == ?", [idDoenca])
+
+    def Update(self, doenca):
+        return self.banco.ExecutarComando("update tb_doenca set nome = ?, descricao = ?, gravidade = ?, tratamento=?, sintomas =? where nome == ?",[doenca.nome, doenca.descricao,doenca.gravidade,doenca.tratamento,doenca.sintomas,doenca.nome])
 
     def Insert(self, doenca):
         return self.banco.ExecutarComando("insert into tb_doenca (nome, descricao, gravidade, tratamento, sintomas) values (?, ?, ?, ?, ?)", [doenca.nome,doenca.descricao,doenca.gravidade,doenca.tratamento, doenca.sintomas])
