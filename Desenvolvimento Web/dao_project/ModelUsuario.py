@@ -48,7 +48,7 @@ class DAOUsuario():
         return False
         
     def Drop(self, id_usuario):
-        return self.banco.ExecutarComando("delete from tb_usuario where id_usuario = ?" , [id_usuario])
+        return self.banco.ExecutarComando("delete from tb_usuario where id_usuario == ?" , [id_usuario])
 
     def Update(self, user):
         return self.banco.ExecutarComando("update tb_usuario set nome = ?, cpf=?, telefone=?, tipo_sanguineo=?, alergia=? where email ==?" , [user.nome, user.cpf, user.telefone, user.tipoSague, user.alergia, user.email])
