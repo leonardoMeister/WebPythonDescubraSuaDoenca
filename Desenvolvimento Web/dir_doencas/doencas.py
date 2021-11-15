@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template , request, session, jsonify
+from flask import Blueprint, render_template , request, session, jsonify,send_file
 from dir_login.login import validarSessao
 from dao_project.ControlDoenca import DAODoenca, Doenca
 from funcoes import LogEnum, Funcoes
+from GeraPdf import PDF
 
 bp_doenca = Blueprint('doenca',__name__, url_prefix="/doença", template_folder= 'templates')
 
@@ -34,6 +35,15 @@ def filtroBanco():
     banco = DAODoenca()
     dados = banco.SelectPorNome(nome=nomeDoenca)
     return render_template("pesquisa.html", dados = dados)
+
+@bp_doenca.route("/pdf")
+@validarSessao
+def pdfDoencas():
+    pdf = PDF()
+    pdf.pdfDoenca()
+    Funcoes.criaLog(LogEnum.INFO, LogEnum.load, request.path, session['nome'], "Geração de PDF")
+    return send_file("PdfDoencas.pdf", attachment_filename='PdfDoencas.pdf')
+
 
 @bp_doenca.route("/deleteDoenca", methods=['POST'])
 @validarSessao
