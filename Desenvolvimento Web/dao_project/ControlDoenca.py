@@ -29,7 +29,8 @@ class DAODoenca():
         return self.banco.ExecutarComando("select nome from tb_doenca where nome == ?", [nome])
     
     def SelectPorNome(self, nome):
-        return self.banco.ExecutarComando("select * from tb_doenca where nome == ?", [nome])
+        nome = "%" + nome + "%"
+        return self.banco.ExecutarComando("select * from tb_doenca where nome like ?", [nome])
 
     def Drop(self, idDoenca):
         return self.banco.ExecutarComando("delete from tb_doenca where id_doenca == ?", [idDoenca])
