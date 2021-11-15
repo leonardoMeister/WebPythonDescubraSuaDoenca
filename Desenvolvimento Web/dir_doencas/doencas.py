@@ -18,7 +18,6 @@ def rotaMenuDoencas():
 def listagemDoencas():
     banco = DAODoenca()
     dados = banco.SelectAll()
-
     return render_template("listaDoencas.html", dados = dados)
 
 @bp_doenca.route("/pesquisa")
@@ -44,33 +43,22 @@ def pdfDoencas():
     Funcoes.criaLog(LogEnum.INFO, LogEnum.load, request.path, session['nome'], "Geração de PDF")
     return send_file("PdfDoencas.pdf", attachment_filename='PdfDoencas.pdf')
 
-
 @bp_doenca.route("/deleteDoenca", methods=['POST'])
 @validarSessao
 def deletarDoenca():
     banco = DAODoenca()
     idDoenca = request.form['id_doenca']
-
     banco.Drop(idDoenca=idDoenca)
-
     dados = banco.SelectAll()
-
     return render_template("listaDoencas.html", dados=dados)
-
-
-
-
 
 @bp_doenca.route("updateDoenca", methods=['POST'])
 @validarSessao
 def atualizarDoenca():
     banco = DAODoenca()
     idDoenca = request.form['id_doenca']
-
     dados = banco.SelectId(idDoenca=idDoenca)
-
     doenca = Doenca(id=dados[0][0],nomeD=dados[0][1],descricaoD=dados[0][2],gravidadeD=dados[0][3],tratamentoD=dados[0][4],sintomasD=dados[0][5])
-
     return render_template("cadastroDoencas.html", doenca = doenca)
 
 @bp_doenca.route("/cadastrarDoenca")
@@ -79,11 +67,6 @@ def rotaCadastrarNova():
     Funcoes.criaLog(LogEnum.INFO, LogEnum.redirect, request.path, session['nome'], "Redirecionando")
     doenca = Doenca()    
     return render_template("cadastroDoencas.html", doenca = doenca)
-
-
-
-
-
 
 @bp_doenca.route("/salvando" , methods = ['POST'])
 @validarSessao
