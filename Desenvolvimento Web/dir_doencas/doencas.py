@@ -25,7 +25,14 @@ def listagemDoencas():
 def pesquisaDoencas():
     banco = DAODoenca()
     dados = banco.SelectAll()
+    return render_template("pesquisa.html", dados = dados)
 
+@bp_doenca.route("/pesquisa", methods=['POST'])
+@validarSessao
+def filtroBanco():
+    nomeDoenca = request.form['nomeDoenca']
+    banco = DAODoenca()
+    dados = banco.SelectPorNome(nome=nomeDoenca)
     return render_template("pesquisa.html", dados = dados)
 
 @bp_doenca.route("/deleteDoenca", methods=['POST'])
