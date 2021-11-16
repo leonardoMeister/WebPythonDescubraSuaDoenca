@@ -21,6 +21,9 @@ class DAOClinica():
     def SelectAll(self):    
         return self.banco.ExecutarComando("select * from tb_clinica")
         
+    def selectName(self, nome):
+        return self.banco.ExecutarComando("select * from tb_clinica where nomeFantasia == ?", [nome])
+    
     def SelectId(self, clinicaId):
         return self.banco.ExecutarComando("select * from tb_clinica where id_clinica == ?",[clinicaId])
 

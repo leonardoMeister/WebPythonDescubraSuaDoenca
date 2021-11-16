@@ -24,8 +24,12 @@ class DAOAgendamentos():
     def SelectAll(self):    
         return self.banco.ExecutarComando("select * from tb_agendamentos")
         
-    def SelectPorId(self, userId):    
+    def SelectPorUserId(self, userId):    
         return self.banco.ExecutarComando("select * from tb_agendamentos where usuario_id ==?", parametros=[userId])
+
+    def SelectPorSuspeita(self, suspeita):
+        suspeita = "%" +suspeita + "%"
+        return self.banco.ExecutarComando("select * from tb_agendamentos where suspeita like ?", [suspeita])
 
     def SelectId(self, agendamentoId):
         return self.banco.ExecutarComando("select * from tb_agendamentos where id_agendamentos ==?", parametros=[agendamentoId])
@@ -34,9 +38,11 @@ class DAOAgendamentos():
         return self.banco.ExecutarComando("delete from tb_agendamentos where id_agendamentos ==?", parametros=[agendamentoId])
 
     def Update(self, agendamento):
-        return self.banco.ExecutarComando("update tb_agendamentos tipo =?, data_criacao=?, data_marcada=?, suspeita=?, descricao=?,clinica_id=? where id_agendamentos =?",
+        return self.banco.ExecutarComando("update tb_agendamentos set tipo =?, data_criacao=?, data_marcada=?, suspeita=?, descricao=?,clinica_id=? where id_agendamentos =?",
         [agendamento.tipo, agendamento.data_criacao, agendamento.data_marcada, agendamento.suspeita, agendamento.descricao, agendamento.clinica_id, agendamento.id_agendamentos])
 
     def Insert(self, agendamento):
+        print("AQUI")
         return self.banco.ExecutarComando("insert into tb_agendamentos (tipo, data_criacao, data_marcada, suspeita, descricao, usuario_id, clinica_id) values (?, ?, ?, ?, ?, ?, ?)",
         [agendamento.tipo, agendamento.data_criacao, agendamento.data_marcada, agendamento.suspeita, agendamento.descricao, agendamento.usuario_id, agendamento.clinica_id])
+
