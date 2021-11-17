@@ -65,9 +65,9 @@ def editarAgendamento():
 @validarSessao
 def returnPdfAgendamento():
     pdf = PDF()
-    #pdf.pdfDoenca()
+    pdf.pdfAgendamento()
     Funcoes.criaLog(LogEnum.INFO, LogEnum.load, request.path, session['nome'], "Geração de PDF")
-    return send_file("PdfDoencas.pdf", attachment_filename='PdfDoencas.pdf')
+    return send_file("PdfAgendamentos.pdf", attachment_filename='PdfAgendamentos.pdf')
 
 @bp_agendamento.route("/validacaoCadastroAgendamento" , methods = ['POST'])
 @validarSessao

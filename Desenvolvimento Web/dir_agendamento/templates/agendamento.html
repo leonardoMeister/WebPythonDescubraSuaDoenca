@@ -27,10 +27,12 @@
 
     <div id="wrapper">
         <footer class="major" style="float: right;">
-            <form name="pesquisaDoencas" id="pesquisaDoencas" method="post" action="{{ url_for('Agendamento.FiltroAgendamento')}}">
+            <form name="pesquisaDoencas" id="pesquisaDoencas" method="post"
+                action="{{ url_for('Agendamento.FiltroAgendamento')}}">
                 <ul class="actions special">
-                    <li><input style="float: right;" type="text" name="suspeitaAgendamento" autocomplete="off" id="suspeitaAgendamento"
-                            maxlength="30" class="form-control" value="" placeholder="Nome Doença"></li>
+                    <li><input style="float: right;" type="text" name="suspeitaAgendamento" autocomplete="off"
+                            id="suspeitaAgendamento" maxlength="30" class="form-control" value=""
+                            placeholder="Suspeita"></li>
                     <li><input style="float: right;" type="submit" value="Pesquisar" class=" float-right login_btn">
                     </li>
                 </ul>
@@ -39,8 +41,8 @@
     </div>
 
     <tbody>
-        {% if dados: %}
         <section id="intro" class="main">
+            {% if dados: %}
             {% for row in dados: %}
             <section id="cta" class="main special">
 
@@ -77,7 +79,9 @@
             </section>
 
             {% endfor %}
+            {% else %}
+                <h1>Não foram encontrdos dados.</h1>
+            {% endif %}
         </section>
-        {% endif %}
 </div>
 {% endblock divMain %}

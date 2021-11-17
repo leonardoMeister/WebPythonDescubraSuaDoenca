@@ -2,6 +2,7 @@ from fpdf import FPDF
 from datetime import datetime
 from dao_project.ModelUsuario import DAOUsuario, DAOEndereco
 from dao_project.ControlDoenca import DAODoenca
+from dao_project.ControlAgendamentos import DAOAgendamentos
 
 class PDF(FPDF):
 
@@ -139,6 +140,47 @@ class PDF(FPDF):
 
         # baixa o relatório criado
         pdf.output('PdfDadosEndereco.pdf')
+    #endregion
+
+    #region PDF AGENDAMENTOS
+    def pdfAgendamento(self):
+        pdf = PDF('L', 'mm', 'A4') # L paisagem, P retrato
+        pdf.set_author("Leonardo Meister")
+        pdf.set_title('Agendamento')
+        pdf.alias_nb_pages() # mostra o numero da pagina no rodapé
+        pdf.add_page()
+        # mostra o cabeçalho
+        pdf.set_font('arial', 'b', 12)
+        pdf.cell(0, 5, 'Agendamento', 0, 1, 'C', 0)
+        pdf.set_font('arial', '', 6)
+        pdf.cell(280, 4, "Emitido em: " + str(datetime.now()), 0, 1, 'R')
+        pdf.ln(5)
+        # monta tabela para mostrar os dados
+        pdf.set_font('arial', 'B', 8)
+        pdf.cell(10, 5, 'ID', 0, 0, 'L')
+        pdf.cell(20, 5, 'Tipo', 0, 0, 'L')
+        pdf.cell(50, 5, 'Data Criação', 0, 0, 'L')
+        pdf.cell(35, 5, 'Data Marcada', 0, 0, 'L')
+        pdf.cell(45, 5, 'Suspeita', 0, 0, 'L')
+        pdf.cell(60, 5, 'Descrição', 0, 0, 'L')
+        pdf.cell(45, 5, 'Id Clinica', 0, 1, 'L')
+        
+        # busca e mostra todos os clientes
+        pdf.set_font('arial', '', 8)
+
+        banco = DAOAgendamentos()
+        res = banco.SelectAll()
+        if res:
+            for row in res:
+                pdf.cell(10, 5, str(row[0]), 0, 0, 'L')
+                pdf.cell(20, 5, str(row[1]), 0, 0, 'L')
+                pdf.cell(50, 5, str(row[2])[:33]+"...", 0, 0, 'L')
+                pdf.cell(35, 5, str(row[3]), 0, 0, 'L')
+                pdf.cell(45, 5, str(row[4])[:30]+"...", 0, 0, 'L')
+                pdf.cell(60, 5, str(row[5])[:40]+"...", 0, 0, 'L')
+                pdf.cell(45, 5, str(row[7]), 0, 1, 'L')
+        # baixa o relatório criado
+        pdf.output('PdfAgendamentos.pdf')
     #endregion
 
     #region PDF PERFIL
