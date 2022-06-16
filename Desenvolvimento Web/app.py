@@ -35,7 +35,7 @@ def rotaErro404(error):
 @app.before_request
 def before_request():
     session.permanent = True
-    tempo = 6
+    tempo = 120
     #SERVE PARA TER UMA FORMA DE ACESSAR O VALOR TEMPO EM OUTROS LUGARES DA SESSAO
     session['tempo'] = tempo
     app.permanent_session_lifetime = timedelta(minutes = tempo)

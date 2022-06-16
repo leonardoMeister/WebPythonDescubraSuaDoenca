@@ -44,7 +44,7 @@ def FiltroAgendamento():
 
 
 @bp_agendamento.route("/editAgendamento", methods=['POST'])
-@validarSessao
+@validarSessao 
 def editarAgendamento():
     idAgendamento = request.form['id_agendamento']
     banco = DAOAgendamentos()

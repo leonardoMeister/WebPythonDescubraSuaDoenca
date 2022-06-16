@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,6 @@
             Login - Descubra Sua Doença
         </title>
     
-        <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
-        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap-5.1.0-dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{url_for('static', filename='loginCss/style.css')}}" />
     </head>
 
@@ -70,10 +67,13 @@
                         {% if request.args.get('falhalogin') == '1': %}
                         <div class="alert alert-danger d-flex justify-content-center" role="alert">
                             Falha no login, tente novamente!
+                            {{request.args.get('falhalogin')}}
+
                         </div>
                         {% else %}
                         <div class="alert alert-info d-flex justify-content-center" role="alert">
                             Preencha o usuario e senha corretamente!
+                            {{request.args.get('falhalogin')}}
                         </div>
                         {% endif %}
     
